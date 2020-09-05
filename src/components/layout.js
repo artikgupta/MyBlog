@@ -9,11 +9,10 @@ import "./layout.css"
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100v;
+  min-height: 100vh;
 `
 const childContainer = styled.div`
   flex-grow: 1;
-  margin-top: 97px;
 `
 
 const Layout = ({ children }) => {
@@ -29,7 +28,7 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
       <PageContainer>
         <childContainer>{children}</childContainer>
         <footer>
