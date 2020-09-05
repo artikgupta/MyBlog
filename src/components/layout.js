@@ -1,16 +1,20 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
+import styled, { ThemeProvider } from "styled-components"
+import { theme } from "../utls/theme"
 import Header from "./header"
 import "./layout.css"
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100v;
+`
+const childContainer = styled.div`
+  flex-grow: 1;
+  margin-top: 97px;
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,23 +28,17 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
+      <PageContainer>
+        <childContainer>{children}</childContainer>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
-      </div>
-    </>
+      </PageContainer>
+    </ThemeProvider>
   )
 }
 
